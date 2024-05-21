@@ -10,7 +10,9 @@ import java.io.IOException;
 public class WelcomePanel extends JPanel implements ActionListener {
     private BufferedImage BACKGROUND;
     private JFrame FRAME;
-    private int yCoord;
+    private int move;
+    private int xCoord;
+    private Timer time;
 
     public WelcomePanel(JFrame frame) {
         FRAME = frame;
@@ -19,12 +21,18 @@ public class WelcomePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        yCoord = 0;
+        xCoord = 0;
+        time = new Timer(7, this);
     }
 
     public void paintComponent(Graphics g) {
-        g.drawImage(BACKGROUND, 0, yCoord, null);
-        yCoord += 2;
+        super.paintComponent(g);
+        g.drawImage(BACKGROUND, xCoord, 0, null);
+        xCoord++;
+        if (xCoord == 10) {
+            xCoord = 0;
+            g.drawImage(BACKGROUND, xCoord, 0, null);
+        }
     }
 
     @Override
