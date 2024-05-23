@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.Thread.sleep;
+
 public class WelcomePanel extends JPanel implements ActionListener {
     private BufferedImage BACKGROUND;
-    private JFrame FRAME;
-    private int move;
+    private final JFrame FRAME;
     private int xCoord;
-    private Timer time;
 
     public WelcomePanel(JFrame frame) {
         FRAME = frame;
@@ -22,16 +22,19 @@ public class WelcomePanel extends JPanel implements ActionListener {
             System.out.println(e.getMessage());
         }
         xCoord = 0;
-        time = new Timer(7, this);
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(BACKGROUND, xCoord, 0, null);
-        xCoord++;
-        if (xCoord == 10) {
-            xCoord = 0;
-            g.drawImage(BACKGROUND, xCoord, 0, null);
+        xCoord--;
+        try {
+            Thread.sleep(2);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        if (xCoord == -1) {
+            g.drawImage(BACKGROUND, 7999, 0, null);
         }
     }
 
