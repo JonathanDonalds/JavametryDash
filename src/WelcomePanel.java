@@ -61,7 +61,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
         }
         g.drawImage(JONATHAN, 50, 500, null);
         g.drawImage(JAVAMETRY_DASH, jDashXCoord, 20, null);
-        g.drawImage(BASE, 0, 630, null);
+        g.drawImage(BASE, -300, 500, null);
         if (jDashXCoord > 400) {
             jDashXCoord--;
         }
