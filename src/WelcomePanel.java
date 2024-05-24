@@ -7,8 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static java.lang.Thread.sleep;
-
 public class WelcomePanel extends JPanel implements ActionListener {
     private BufferedImage BACKGROUND;
     private final JFrame FRAME;
@@ -33,8 +31,9 @@ public class WelcomePanel extends JPanel implements ActionListener {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        if (xCoord == -1) {
-            g.drawImage(BACKGROUND, 7999, 0, null);
+        if (xCoord == -200) {
+            g.drawImage(BACKGROUND, 2560, 0, null);
+            xCoord = 0;
         }
     }
 
