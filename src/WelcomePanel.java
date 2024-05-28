@@ -43,7 +43,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
             System.out.println(e.getMessage());
         }
         jonathanXCoord = 0;
-        jDashXCoord = 5000;
+        jDashXCoord = 2000;
     }
 
     public void paintComponent(Graphics g) {
@@ -61,7 +61,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
         }
         g.drawImage(JONATHAN, 50, 500, null);
         g.drawImage(JAVAMETRY_DASH, jDashXCoord, 20, null);
-        g.drawImage(BASE, -300, 500, null);
+        g.drawImage(BASE, -300, 700, null);
         if (jDashXCoord > 400) {
             jDashXCoord--;
         }
