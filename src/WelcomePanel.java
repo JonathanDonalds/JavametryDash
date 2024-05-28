@@ -46,13 +46,13 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         backgroundXCoord = 0;
-        jDashXCoord = 2000;
+        jDashXCoord = 1000;
         jonathanYCoord = 500;
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(BACKGROUND, backgroundXCoord, 0, null);
+        g.drawImage(BACKGROUND, backgroundXCoord, -20, null);
         backgroundXCoord--;
 
         try {
@@ -74,17 +74,15 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             jDashXCoord--;
         }
 
-        if (jDashXCoord == 400) {
-            if (PRESSEDKEYS[32]) {
-                jonathanYCoord = 600;
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                jonathanYCoord = 500;
-            }
+        if (jDashXCoord == 400 && PRESSEDKEYS[32]) {
             System.out.println("test");
+            jonathanYCoord++;
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            // jonathanYCoord = 500;
         }
     }
 
