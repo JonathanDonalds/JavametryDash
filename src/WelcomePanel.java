@@ -78,13 +78,9 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32]) {
-            jonathanYCoord = 300;
-            try {
-                Thread.sleep(2);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (jonathanYCoord > 300) {
+                jonathanYCoord--;
             }
-            jonathanYCoord = 500;
         }
     }
 
