@@ -48,6 +48,9 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         backgroundXCoord = 0;
         jDashXCoord = 1000;
         jonathanYCoord = 500;
+        addKeyListener(this);
+        setFocusable(true);
+        requestFocusInWindow();
     }
 
     public void paintComponent(Graphics g) {
@@ -75,14 +78,13 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32]) {
-            System.out.println("test");
-            jonathanYCoord++;
+            jonathanYCoord = 300;
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            // jonathanYCoord = 500;
+            jonathanYCoord = 500;
         }
     }
 
