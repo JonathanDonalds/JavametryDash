@@ -3,20 +3,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-public class WelcomePanel extends JPanel implements ActionListener {
+public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
+    private final boolean[] PRESSEDKEYS;
     private Image BACKGROUND;
     private Image BASE;
     private Image JAVAMETRY_DASH;
     private Image JONATHAN;
-    private final JFrame FRAME;
+    private int backgroundXCoord;
     private int jDashXCoord;
-    private int jonathanXCoord;
+    private int jonathanYCoord;
 
-    public WelcomePanel(JFrame frame) {
-        FRAME = frame;
+    public WelcomePanel() {
+        PRESSEDKEYS = new boolean[128];
         try {
             BACKGROUND = ImageIO.read(new File("src/Images/Background.png"));
         } catch (IOException e) {
@@ -42,33 +45,66 @@ public class WelcomePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        jonathanXCoord = 0;
+        backgroundXCoord = 0;
         jDashXCoord = 2000;
+        jonathanYCoord = 500;
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(BACKGROUND, jonathanXCoord, 0, null);
-        jonathanXCoord--;
+        g.drawImage(BACKGROUND, backgroundXCoord, 0, null);
+        backgroundXCoord--;
+
         try {
             Thread.sleep(2);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        if (jonathanXCoord == -200) {
+
+        if (backgroundXCoord == -200) {
             g.drawImage(BACKGROUND, 2560, 0, null);
-            jonathanXCoord = 0;
+            backgroundXCoord = 0;
         }
-        g.drawImage(JONATHAN, 50, 500, null);
+
+        g.drawImage(JONATHAN, 50, jonathanYCoord, null);
         g.drawImage(JAVAMETRY_DASH, jDashXCoord, 20, null);
         g.drawImage(BASE, -300, 700, null);
+
         if (jDashXCoord > 400) {
             jDashXCoord--;
+        }
+
+        if (jDashXCoord == 400) {
+            if (PRESSEDKEYS[32]) {
+                jonathanYCoord = 600;
+                try {
+                    Thread.sleep(2);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                jonathanYCoord = 500;
+            }
+            System.out.println("test");
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        PRESSEDKEYS[e.getKeyCode()] = true;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        PRESSEDKEYS[e.getKeyCode()] = false;
     }
 }

@@ -9,7 +9,7 @@ public class WelcomeFrame implements Runnable {
         frame.setSize(2560, 1600);
         frame.setLocationRelativeTo(null);
 
-        PANEL = new WelcomePanel(frame);
+        PANEL = new WelcomePanel();
         frame.add(PANEL);
 
         frame.setVisible(true);
