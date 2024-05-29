@@ -7,6 +7,7 @@ public class WelcomeFrame implements Runnable {
         JFrame frame = new JFrame("Welcome");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2560, 1600);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
         PANEL = new WelcomePanel();

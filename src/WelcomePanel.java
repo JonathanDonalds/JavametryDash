@@ -77,10 +77,11 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             jDashXCoord--;
         }
 
+
         if (jDashXCoord == 400 && PRESSEDKEYS[32]) {
-           if (jonathanYCoord > 300) {
-               jonathanYCoord -= 11;
-           }
+            if (jonathanYCoord > 300) {
+                jonathanYCoord -= 11;
+            }
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
@@ -91,11 +92,22 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         if (!PRESSEDKEYS[32]) {
             jonathanYCoord = 500;
         }
+
+        if (jonathanYCoord == 412) {
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            jonathanYCoord = 500;
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() instanceof Timer) {
+            jonathanYCoord = 500;
+        }
     }
 
     @Override
