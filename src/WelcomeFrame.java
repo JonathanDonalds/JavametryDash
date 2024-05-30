@@ -6,7 +6,7 @@ public class WelcomeFrame implements Runnable {
     public WelcomeFrame() {
         JFrame frame = new JFrame("Javametry Dash");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 800);
+        frame.setSize(1300, 800);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 

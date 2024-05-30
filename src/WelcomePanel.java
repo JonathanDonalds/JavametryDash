@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
+    private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image BACKGROUND;
     private Image BASE;
@@ -19,6 +20,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
     private int jonathanYCoord;
 
     public WelcomePanel() {
+        stop = false;
         PRESSEDKEYS = new boolean[128];
         try {
             BACKGROUND = ImageIO.read(new File("src/Images/Background.png"));
@@ -77,38 +79,31 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             jDashXCoord--;
         }
 
-        if (jDashXCoord == 400 && PRESSEDKEYS[32]) {
-            if (jonathanYCoord > 300) {
-                jonathanYCoord -= 11;
-            }
+        if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            if (jonathanYCoord > 203) {
+                jonathanYCoord -= 11;
+            } else {
+                jonathanYCoord = 500;
+                stop = true;
+            }
         }
 
         if (!PRESSEDKEYS[32]) {
-            jonathanYCoord = 500;
-        }
-
-        if (jonathanYCoord == 401) {
-            jonathanYCoord = 500;
-            removeKeyListener(this);
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() instanceof Timer) {
+            stop = false;
             jonathanYCoord = 500;
         }
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void actionPerformed(ActionEvent e) {}
 
-    }
+    @Override
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -120,3 +115,5 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         PRESSEDKEYS[e.getKeyCode()] = false;
     }
 }
+
+// IDEA: ADD MULTIPLE SPRITE OPTIONS, NOT JUST JONATHAN
