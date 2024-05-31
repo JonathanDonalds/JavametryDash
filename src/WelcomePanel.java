@@ -8,13 +8,14 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
-    private boolean stop;
+    public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
+        private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image BACKGROUND;
     private Image BASE;
     private Image JAVAMETRY_DASH;
     private Image JONATHAN;
+    private Image LITTLE_JONATHAN;
     private int backgroundXCoord;
     private int jDashXCoord;
     private int jonathanYCoord;
@@ -43,10 +44,11 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            BASE = ImageIO.read(new File("src/Images/Base.png"));
+            LITTLE_JONATHAN = ImageIO.read(new File("src/Images/LittleJonathan.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
         backgroundXCoord = 0;
         jDashXCoord = 1000;
         jonathanYCoord = 500;
@@ -97,6 +99,8 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             stop = false;
             jonathanYCoord = 500;
         }
+
+
     }
 
     @Override
