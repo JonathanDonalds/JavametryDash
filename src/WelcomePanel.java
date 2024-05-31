@@ -19,6 +19,7 @@ import java.io.IOException;
     private int backgroundXCoord;
     private int jDashXCoord;
     private int jonathanYCoord;
+    private int lJonathanXCoord;
 
     public WelcomePanel() {
         stop = false;
@@ -52,6 +53,7 @@ import java.io.IOException;
         backgroundXCoord = 0;
         jDashXCoord = 1000;
         jonathanYCoord = 500;
+        lJonathanXCoord = 1000;
         addKeyListener(this);
         setFocusable(true);
         requestFocusInWindow();
@@ -75,10 +77,13 @@ import java.io.IOException;
 
         g.drawImage(jonathan, 50, jonathanYCoord, null);
         g.drawImage(javametryDash, jDashXCoord, 20, null);
+        g.drawImage(littleJonathan, lJonathanXCoord, 580, null);
         g.drawImage(base, -300, 700, null);
 
         if (jDashXCoord > 400) {
             jDashXCoord--;
+        } else {
+            lJonathanXCoord--;
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
@@ -99,8 +104,6 @@ import java.io.IOException;
             stop = false;
             jonathanYCoord = 500;
         }
-
-        g.drawImage(littleJonathan, 400, 800, null);
     }
 
     @Override
