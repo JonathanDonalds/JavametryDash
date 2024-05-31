@@ -11,11 +11,11 @@ import java.io.IOException;
     public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
         private boolean stop;
     private final boolean[] PRESSEDKEYS;
-    private Image BACKGROUND;
-    private Image BASE;
-    private Image JAVAMETRY_DASH;
-    private Image JONATHAN;
-    private Image LITTLE_JONATHAN;
+    private Image background;
+    private Image base;
+    private Image javametryDash;
+    private Image jonathan;
+    private Image littleJonathan;
     private int backgroundXCoord;
     private int jDashXCoord;
     private int jonathanYCoord;
@@ -24,27 +24,27 @@ import java.io.IOException;
         stop = false;
         PRESSEDKEYS = new boolean[128];
         try {
-            BACKGROUND = ImageIO.read(new File("src/Images/Background.png"));
+            background = ImageIO.read(new File("src/Images/Background.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         try {
-            BASE = ImageIO.read(new File("src/Images/Base.png"));
+            base = ImageIO.read(new File("src/Images/Base.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         try {
-            JONATHAN = ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            jonathan = ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         try {
-            JAVAMETRY_DASH = ImageIO.read(new File("src/Images/JavametryDash.png"));
+            javametryDash = ImageIO.read(new File("src/Images/JavametryDash.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         try {
-            LITTLE_JONATHAN = ImageIO.read(new File("src/Images/LittleJonathan.png"));
+            littleJonathan = ImageIO.read(new File("src/Images/LittleJonathan.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -59,7 +59,7 @@ import java.io.IOException;
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(BACKGROUND, backgroundXCoord, -20, null);
+        g.drawImage(background, backgroundXCoord, -20, null);
         backgroundXCoord--;
 
         try {
@@ -69,13 +69,13 @@ import java.io.IOException;
         }
 
         if (backgroundXCoord == -200) {
-            g.drawImage(BACKGROUND, 2560, 0, null);
+            g.drawImage(background, 2560, 0, null);
             backgroundXCoord = 0;
         }
 
-        g.drawImage(JONATHAN, 50, jonathanYCoord, null);
-        g.drawImage(JAVAMETRY_DASH, jDashXCoord, 20, null);
-        g.drawImage(BASE, -300, 700, null);
+        g.drawImage(jonathan, 50, jonathanYCoord, null);
+        g.drawImage(javametryDash, jDashXCoord, 20, null);
+        g.drawImage(base, -300, 700, null);
 
         if (jDashXCoord > 400) {
             jDashXCoord--;
@@ -100,11 +100,12 @@ import java.io.IOException;
             jonathanYCoord = 500;
         }
 
-
+        g.drawImage(littleJonathan, 100, 500, null);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {}
