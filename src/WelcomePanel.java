@@ -44,7 +44,7 @@ import java.io.IOException;
             System.out.println(e.getMessage());
         }
         try {
-            littleJonathan = ImageIO.read(new File("src/Images/LittleJonathan.png"));
+            littleJonathan = ImageIO.read(new File("src/Images/LittleJonathan.png")).getScaledInstance(128, 123, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -100,7 +100,7 @@ import java.io.IOException;
             jonathanYCoord = 500;
         }
 
-        g.drawImage(littleJonathan, 100, 500, null);
+        g.drawImage(littleJonathan, 400, 800, null);
     }
 
     @Override
