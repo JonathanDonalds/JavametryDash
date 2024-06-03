@@ -20,6 +20,10 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
     private int jDashXCoord;
     private int jonathanYCoord;
     private int lJonathanXCoord;
+    private int time1;
+    private int time2;
+    private Timer timer;
+
 
     public WelcomePanel() {
         stop = false;
@@ -54,6 +58,10 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         jDashXCoord = 1000;
         jonathanYCoord = 500;
         lJonathanXCoord = 1000;
+        time1 = 0;
+        time2 = 0;
+        timer = new Timer(80, this);
+        timer.start();
         addKeyListener(this);
         setFocusable(true);
         requestFocusInWindow();
@@ -61,20 +69,15 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(background, backgroundXCoord, -20, null);
-        backgroundXCoord--;
-
-        try {
-            Thread.sleep(2);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        if (time1 < 3) {
+            g.drawImage(background, backgroundXCoord, -20, null);
+            backgroundXCoord--;
+            if (backgroundXCoord == -200) {
+                g.drawImage(background, 2560, 0, null);
+                backgroundXCoord = 0;
+            }
+            time1 = 0;
         }
-
-        if (backgroundXCoord == -200) {
-            g.drawImage(background, 2560, 0, null);
-            backgroundXCoord = 0;
-        }
-
         g.drawImage(jonathan, 50, jonathanYCoord, null);
         g.drawImage(javametryDash, jDashXCoord, 20, null);
         g.drawImage(littleJonathan, lJonathanXCoord, 580, null);
@@ -91,16 +94,15 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
-            try {
-                Thread.sleep(2);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            if (jonathanYCoord > 103) {
-                jonathanYCoord -= 11;
-            } else {
-                jonathanYCoord = 500;
-                stop = true;
+            time2 = 0;
+            if (time2 < 3) {
+                if (jonathanYCoord > 103) {
+                    jonathanYCoord -= 11;
+                } else {
+                    jonathanYCoord = 500;
+                    stop = true;
+                }
+                time2 = 0;
             }
         }
 
@@ -112,6 +114,10 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof Timer) {
+            time1++;
+            time2++;
+        }
     }
 
     @Override
