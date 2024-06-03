@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-    public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
-        private boolean stop;
+public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
+    private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
     private Image base;
@@ -86,13 +86,17 @@ import java.io.IOException;
             lJonathanXCoord--;
         }
 
+        if (lJonathanXCoord < -10) {
+            lJonathanXCoord = 1600;
+        }
+
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if (jonathanYCoord > 203) {
+            if (jonathanYCoord > 103) {
                 jonathanYCoord -= 11;
             } else {
                 jonathanYCoord = 500;
