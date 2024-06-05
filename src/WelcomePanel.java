@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
+    private boolean goingUp;
+    private boolean jump;
     private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
@@ -26,6 +28,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
 
     public WelcomePanel() {
+        goingUp = true;
         stop = false;
         PRESSEDKEYS = new boolean[128];
         try {
@@ -94,19 +97,28 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
-            time2 = 0;
-            if (time2 < 3) {
-                if (jonathanYCoord > 103) {
+            jump = true;
+            if (time2 >= 0) {
+                if (jonathanYCoord > 203 && goingUp) {
                     jonathanYCoord -= 11;
-                } else {
-                    jonathanYCoord = 500;
-                    stop = true;
+                    System.out.println(jonathanYCoord);
+                } else if (jonathanYCoord != 500) {
+                    System.out.println(jonathanYCoord);
+                    goingUp = false;
+                    jonathanYCoord += 11;
                 }
                 time2 = 0;
             }
+            /*try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }*/
         }
 
         if (!PRESSEDKEYS[32]) {
+            goingUp = true;
+            jump = false;
             stop = false;
             jonathanYCoord = 500;
         }
