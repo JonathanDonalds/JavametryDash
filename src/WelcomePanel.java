@@ -10,21 +10,19 @@ import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
     private boolean goingUp;
-    private boolean jump;
     private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
     private Image base;
     private Image javametryDash;
     private Image jonathanImg;
-    private Image littleJonathan;
+    private Image littleJonathanImg;
     private int backgroundXCoord;
     private int jDashXCoord;
     private int jonathanYCoord;
     private int lJonathanXCoord;
     private int time1;
     private int time2;
-    private Timer timer;
 
 
     public WelcomePanel() {
@@ -42,8 +40,8 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            Sprite jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-            this.jonathanImg = jonathan.getImage();
+            Sprite jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT), "Jonathan");
+            jonathanImg = jonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -53,7 +51,8 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            littleJonathan = ImageIO.read(new File("src/Images/LittleJonathan.png")).getScaledInstance(100, 95, Image.SCALE_DEFAULT);
+            Sprite lJonathan = new Sprite(ImageIO.read(new File("src/Images/LittleJonathan.png")).getScaledInstance(100, 95, Image.SCALE_DEFAULT), "Little Jonathan");
+            littleJonathanImg = lJonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -64,7 +63,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         lJonathanXCoord = 1000;
         time1 = 0;
         time2 = 0;
-        timer = new Timer(80, this);
+        Timer timer = new Timer(80, this);
         timer.start();
         addKeyListener(this);
         setFocusable(true);
@@ -84,7 +83,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         }
         g.drawImage(jonathanImg, 50, jonathanYCoord, null);
         g.drawImage(javametryDash, jDashXCoord, 20, null);
-        g.drawImage(littleJonathan, lJonathanXCoord, 610, null);
+        g.drawImage(littleJonathanImg, lJonathanXCoord, 610, null);
         g.drawImage(base, -300, 700, null);
 
         if (jDashXCoord > 400) {
@@ -98,7 +97,6 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
-            jump = true;
             if (time2 >= 0) {
                 if (jonathanYCoord > 203 && goingUp) {
                     jonathanYCoord -= 10;
@@ -110,17 +108,10 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
                 }
                 time2 = 0;
             }
-
-            /*try {
-                Thread.sleep(2);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }*/
         }
 
         if (!PRESSEDKEYS[32]) {
             goingUp = true;
-            jump = false;
             stop = false;
             jonathanYCoord = 500;
         }
