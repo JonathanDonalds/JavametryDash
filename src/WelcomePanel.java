@@ -100,15 +100,16 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             jump = true;
             if (time2 >= 0) {
                 if (jonathanYCoord > 203 && goingUp) {
-                    jonathanYCoord -= 11;
+                    jonathanYCoord -= 10;
                     System.out.println(jonathanYCoord);
                 } else if (jonathanYCoord != 500) {
                     System.out.println(jonathanYCoord);
                     goingUp = false;
-                    jonathanYCoord += 11;
+                    jonathanYCoord += 1;
                 }
                 time2 = 0;
             }
+
             /*try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
