@@ -24,7 +24,7 @@ public class Sprite {
         this.yCoord = yCoord;
     }
 
-    public Rectangle playerRect() {
+    public Rectangle rect() {
         int height = getImage().getHeight();
         int width = getImage().getWidth();
         if (name.equals("Jonathan")) {

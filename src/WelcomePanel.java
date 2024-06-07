@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
     private boolean goingUp;
+    private boolean start;
     private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
@@ -62,7 +63,9 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
         backgroundXCoord = 0;
         jDashXCoord = 1000;
         jonathanYCoord = 500;
+        jonathan.setYCoord(jonathanYCoord);
         lJonathanXCoord = 1000;
+        lJonathan.setXCoord(lJonathanXCoord);
         time1 = 0;
         time2 = 0;
         Timer timer = new Timer(80, this);
@@ -74,51 +77,53 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (time1 < 6) {
-            g.drawImage(background, backgroundXCoord, -20, null);
-            backgroundXCoord--;
-            if (backgroundXCoord == -200) {
-                g.drawImage(background, 2560, 0, null);
-                backgroundXCoord = 0;
-            }
-            time1 = 0;
-        }
-        g.drawImage(jonathanImg, 50, jonathanYCoord, null);
-        g.drawImage(javametryDash, jDashXCoord, 20, null);
-        g.drawImage(littleJonathanImg, lJonathanXCoord, 610, null);
-        g.drawImage(base, -300, 700, null);
-
-        if (jDashXCoord > 400) {
-            jDashXCoord--;
-        } else {
-            lJonathanXCoord--;
-            lJonathan.setXCoord(lJonathanXCoord);
-        }
-
-        if (lJonathanXCoord < -100) {
-            lJonathanXCoord = 1600;
-            lJonathan.setXCoord(lJonathanXCoord);
-        }
-
-        if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
-            if (time2 >= 0) {
-                if (jonathanYCoord > 203 && goingUp) {
-                    jonathanYCoord -= 10;
-                    jonathan.setYCoord(jonathanYCoord);
-                } else if (jonathanYCoord != 500) {
-                    goingUp = false;
-                    jonathanYCoord += 1;
-                    jonathan.setYCoord(jonathanYCoord);
+        if (!jonathan.rect().intersects(lJonathan.rect())) {
+            if (time1 < 6) {
+                g.drawImage(background, backgroundXCoord, -20, null);
+                backgroundXCoord--;
+                if (backgroundXCoord == -200) {
+                    g.drawImage(background, 2560, 0, null);
+                    backgroundXCoord = 0;
                 }
-                time2 = 0;
+                time1 = 0;
             }
-        }
+            g.drawImage(jonathanImg, 50, jonathanYCoord, null);
+            g.drawImage(javametryDash, jDashXCoord, 20, null);
+            g.drawImage(littleJonathanImg, lJonathanXCoord, 610, null);
+            g.drawImage(base, -300, 700, null);
 
-        if (!PRESSEDKEYS[32]) {
-            goingUp = true;
-            stop = false;
-            jonathanYCoord = 500;
-            jonathan.setYCoord(jonathanYCoord);
+            if (jDashXCoord > 400) {
+                jDashXCoord--;
+            } else {
+                lJonathanXCoord--;
+                lJonathan.setXCoord(lJonathanXCoord);
+            }
+
+            if (lJonathanXCoord < -100) {
+                lJonathanXCoord = 1600;
+                lJonathan.setXCoord(lJonathanXCoord);
+            }
+
+            if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
+                if (time2 >= 0) {
+                    if (jonathanYCoord > 203 && goingUp) {
+                        jonathanYCoord -= 10;
+                        jonathan.setYCoord(jonathanYCoord);
+                    } else if (jonathanYCoord != 500) {
+                        goingUp = false;
+                        jonathanYCoord += 1;
+                        jonathan.setYCoord(jonathanYCoord);
+                    }
+                    time2 = 0;
+                }
+            }
+
+            if (!PRESSEDKEYS[32]) {
+                goingUp = true;
+                stop = false;
+                jonathanYCoord = 500;
+                jonathan.setYCoord(jonathanYCoord);
+            }
         }
     }
 
