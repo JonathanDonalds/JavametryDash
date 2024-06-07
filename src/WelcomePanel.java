@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
     private boolean goingUp;
-    private boolean start;
     private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
@@ -124,6 +123,8 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
                 jonathanYCoord = 500;
                 jonathan.setYCoord(jonathanYCoord);
             }
+        } else {
+            g.drawImage();
         }
     }
 
