@@ -1,16 +1,17 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Sprite {
     private int xCoord;
     private int yCoord;
-    private final Image i;
-    private String name;
-    public Sprite(Image i, String name) {
+    private final BufferedImage i;
+    private final String name;
+    public Sprite(BufferedImage i, String name) {
         this.i = i;
         this.name = name;
     }
 
-    public Image getImage() {
+    public BufferedImage getImage() {
         return i;
     }
 

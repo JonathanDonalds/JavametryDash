@@ -40,7 +40,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            Sprite jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT), "Jonathan");
+            Sprite jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")), "Jonathan");
             jonathanImg = jonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -51,7 +51,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            Sprite lJonathan = new Sprite(ImageIO.read(new File("src/Images/LittleJonathan.png")).getScaledInstance(100, 95, Image.SCALE_DEFAULT), "Little Jonathan");
+            Sprite lJonathan = new Sprite(ImageIO.read(new File("src/Images/LittleJonathan.png")), "Little Jonathan");
             littleJonathanImg = lJonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
