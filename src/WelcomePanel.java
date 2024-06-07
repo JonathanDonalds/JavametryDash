@@ -72,7 +72,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (time1 < 3) {
+        if (time1 < 6) {
             g.drawImage(background, backgroundXCoord, -20, null);
             backgroundXCoord--;
             if (backgroundXCoord == -200) {
