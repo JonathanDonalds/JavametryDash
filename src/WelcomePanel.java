@@ -16,7 +16,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
     private Image background;
     private Image base;
     private Image javametryDash;
-    private Image jonathan;
+    private Image jonathanImg;
     private Image littleJonathan;
     private int backgroundXCoord;
     private int jDashXCoord;
@@ -42,7 +42,8 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            jonathan = ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+            Sprite jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")).getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+            this.jonathanImg = jonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -52,7 +53,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            littleJonathan = ImageIO.read(new File("src/Images/LittleJonathan.png")).getScaledInstance(128, 123, Image.SCALE_DEFAULT);
+            littleJonathan = ImageIO.read(new File("src/Images/LittleJonathan.png")).getScaledInstance(100, 95, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -81,9 +82,9 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             }
             time1 = 0;
         }
-        g.drawImage(jonathan, 50, jonathanYCoord, null);
+        g.drawImage(jonathanImg, 50, jonathanYCoord, null);
         g.drawImage(javametryDash, jDashXCoord, 20, null);
-        g.drawImage(littleJonathan, lJonathanXCoord, 580, null);
+        g.drawImage(littleJonathan, lJonathanXCoord, 610, null);
         g.drawImage(base, -300, 700, null);
 
         if (jDashXCoord > 400) {
