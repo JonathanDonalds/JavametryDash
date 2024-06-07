@@ -23,6 +23,8 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
     private int lJonathanXCoord;
     private int time1;
     private int time2;
+    private Sprite jonathan;
+    private Sprite lJonathan;
 
 
     public WelcomePanel() {
@@ -40,7 +42,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            Sprite jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")), "Jonathan");
+            jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")), "Jonathan");
             jonathanImg = jonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -51,7 +53,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            Sprite lJonathan = new Sprite(ImageIO.read(new File("src/Images/LittleJonathan.png")), "Little Jonathan");
+            lJonathan = new Sprite(ImageIO.read(new File("src/Images/LittleJonathan.png")), "Little Jonathan");
             littleJonathanImg = lJonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -90,21 +92,23 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             jDashXCoord--;
         } else {
             lJonathanXCoord--;
+            jonathan.setXCoord(lJonathanXCoord);
         }
 
-        if (lJonathanXCoord < -10) {
+        if (lJonathanXCoord < -100) {
             lJonathanXCoord = 1600;
+            jonathan.setXCoord(lJonathanXCoord);
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
             if (time2 >= 0) {
                 if (jonathanYCoord > 203 && goingUp) {
                     jonathanYCoord -= 10;
-                    System.out.println(jonathanYCoord);
+                    jonathan.setYCoord(jonathanYCoord);
                 } else if (jonathanYCoord != 500) {
-                    System.out.println(jonathanYCoord);
                     goingUp = false;
                     jonathanYCoord += 1;
+                    jonathan.setYCoord(jonathanYCoord);
                 }
                 time2 = 0;
             }
@@ -114,6 +118,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             goingUp = true;
             stop = false;
             jonathanYCoord = 500;
+            jonathan.setYCoord(jonathanYCoord);
         }
     }
 
