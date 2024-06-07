@@ -92,12 +92,12 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             jDashXCoord--;
         } else {
             lJonathanXCoord--;
-            jonathan.setXCoord(lJonathanXCoord);
+            lJonathan.setXCoord(lJonathanXCoord);
         }
 
         if (lJonathanXCoord < -100) {
             lJonathanXCoord = 1600;
-            jonathan.setXCoord(lJonathanXCoord);
+            lJonathan.setXCoord(lJonathanXCoord);
         }
 
         if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
