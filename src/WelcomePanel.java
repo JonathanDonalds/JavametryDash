@@ -124,7 +124,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
                 jonathan.setYCoord(jonathanYCoord);
             }
         } else {
-            g.drawImage();
+            // g.drawImage();
         }
     }
 
