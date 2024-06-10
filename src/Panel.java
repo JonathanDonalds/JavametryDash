@@ -134,6 +134,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         } else {
             g.drawImage(gameOver, 0, 0, null);
             if (PRESSEDKEYS[32]) {
+
+            }
+            if (!PRESSEDKEYS[32]) {
                 backgroundXCoord = 0;
                 isGameOver = false;
                 jonathanYCoord = 500;
