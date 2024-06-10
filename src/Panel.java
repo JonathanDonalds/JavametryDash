@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
-public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
+public class Panel extends JPanel implements ActionListener, KeyListener {
     private boolean goingUp;
     private boolean isGameOver;
     private boolean stop;
@@ -29,7 +29,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
     private Sprite lJonathan;
 
 
-    public WelcomePanel() {
+    public Panel() {
         goingUp = true;
         isGameOver = false;
         stop = false;
@@ -136,12 +136,11 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             if (PRESSEDKEYS[32]) {
                 backgroundXCoord = 0;
                 isGameOver = false;
-                lJonathan.setXCoord(10000);
-                lJonathan.setYCoord(10000);
                 jonathanYCoord = 500;
                 jonathan.setYCoord(jonathanYCoord);
                 lJonathanXCoord = 1000;
                 lJonathan.setXCoord(lJonathanXCoord);
+                g.drawImage(background, backgroundXCoord, -20, null);
             }
         }
     }
