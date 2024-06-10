@@ -135,6 +135,10 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             g.drawImage(gameOver, 0, 0, null);
             if (PRESSEDKEYS[32]) {
                 isGameOver = false;
+                lJonathan.setXCoord(0);
+                lJonathan.setYCoord(0);
+                lJonathan.setXCoord(10000);
+                lJonathan.setYCoord(10000);
             }
         }
     }
