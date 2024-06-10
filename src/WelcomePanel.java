@@ -10,10 +10,12 @@ import java.io.IOException;
 
 public class WelcomePanel extends JPanel implements ActionListener, KeyListener {
     private boolean goingUp;
+    private boolean isGameOver;
     private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
     private Image base;
+    private Image gameOver;
     private Image javametryDash;
     private Image jonathanImg;
     private Image littleJonathanImg;
@@ -29,6 +31,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
     public WelcomePanel() {
         goingUp = true;
+        isGameOver = false;
         stop = false;
         PRESSEDKEYS = new boolean[128];
         try {
@@ -42,13 +45,18 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
             System.out.println(e.getMessage());
         }
         try {
-            jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")), "Jonathan");
-            jonathanImg = jonathan.getImage();
+            gameOver = ImageIO.read(new File("src/Images/GameOver.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         try {
             javametryDash = ImageIO.read(new File("src/Images/JavametryDash.png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            jonathan = new Sprite(ImageIO.read(new File("src/Images/Jonathan.png")), "Jonathan");
+            jonathanImg = jonathan.getImage();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -76,7 +84,7 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (!jonathan.rect().intersects(lJonathan.rect())) {
+        if (!jonathan.rect().intersects(lJonathan.rect()) && !isGameOver) {
             if (time1 < 6) {
                 g.drawImage(background, backgroundXCoord, -20, null);
                 backgroundXCoord--;
@@ -124,7 +132,10 @@ public class WelcomePanel extends JPanel implements ActionListener, KeyListener 
                 jonathan.setYCoord(jonathanYCoord);
             }
         } else {
-            // g.drawImage();
+            g.drawImage(gameOver, 0, 0, null);
+            if (PRESSEDKEYS[32]) {
+                isGameOver = false;
+            }
         }
     }
 
