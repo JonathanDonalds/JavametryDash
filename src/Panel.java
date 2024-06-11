@@ -82,10 +82,11 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
         backgroundXCoord = 0;
         jDashXCoord = 1000;
-        jonathanYCoord = 500;
 
+        jonathanYCoord = 500;
         assert jonathan != null;
         jonathan.setYCoord(jonathanYCoord);
+
         lJonathanXCoord = 1000;
         assert lJonathan != null;
         lJonathan.setXCoord(lJonathanXCoord);
@@ -126,7 +127,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             if (jDashXCoord == 400 && PRESSEDKEYS[32] && !stop) {
                 if (time2 >= 0) {
                     if (jonathanYCoord > 203 && goingUp) {
-                        jonathanYCoord -= 10;
+                        jonathanYCoord -= 1;
                         jonathan.setYCoord(jonathanYCoord);
                     } else if (jonathanYCoord != 500) {
                         goingUp = false;

@@ -30,6 +30,6 @@ public class Sprite {
         if (name.equals("Jonathan")) {
             return new Rectangle(50, yCoord, width, height);
         }
-        return new Rectangle(xCoord, 610, width, height);
+        return new Rectangle(xCoord, 655, width, height);
     }
 }
