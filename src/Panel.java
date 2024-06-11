@@ -32,11 +32,6 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
 
     public Panel() {
-        goingUp = true;
-        held = false;
-        isGameOver = false;
-        restart = false;
-        stop = false;
         PRESSEDKEYS = new boolean[128];
         try {
             background = ImageIO.read(new File("src/Images/Background.png"));
@@ -70,20 +65,33 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        backgroundXCoord = 0;
-        jDashXCoord = 1000;
-        jonathanYCoord = 500;
-        jonathan.setYCoord(jonathanYCoord);
-        lJonathanXCoord = 1000;
-        lJonathan.setXCoord(lJonathanXCoord);
-        time1 = 0;
-        time2 = 0;
         Timer timer = new Timer(80, this);
         timer.start();
         addKeyListener(this);
         setFocusable(true);
         requestFocusInWindow();
+        init();
+    }
+
+    public void init() {
+        goingUp = true;
+        held = false;
+        isGameOver = false;
+        restart = false;
+        stop = false;
+
+        backgroundXCoord = 0;
+        jDashXCoord = 1000;
+        jonathanYCoord = 500;
+
+        assert jonathan != null;
+        jonathan.setYCoord(jonathanYCoord);
+        lJonathanXCoord = 1000;
+        assert lJonathan != null;
+        lJonathan.setXCoord(lJonathanXCoord);
+
+        time1 = 0;
+        time2 = 0;
     }
 
     public void paintComponent(Graphics g) {
@@ -146,16 +154,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
                 restart = true;
             }
             if (PRESSEDKEYS[32] && restart) {
-               backgroundXCoord = 0;
-               isGameOver = false;
-               jonathanYCoord = 500;
-               jonathan.setYCoord(jonathanYCoord);
-               lJonathanXCoord = 1000;
-               lJonathan.setXCoord(lJonathanXCoord);
-               g.drawImage(background, backgroundXCoord, -20, null);
-               restart = false;
-               time1 = 0;
-               time2 = 0;
+               init();
             }
         }
     }
