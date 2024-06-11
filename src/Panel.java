@@ -154,6 +154,8 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
                lJonathan.setXCoord(lJonathanXCoord);
                g.drawImage(background, backgroundXCoord, -20, null);
                restart = false;
+               time1 = 0;
+               time2 = 0;
             }
         }
     }
