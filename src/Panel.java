@@ -181,5 +181,3 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
         PRESSEDKEYS[e.getKeyCode()] = false;
     }
 }
-
-// IDEA: ADD MULTIPLE SPRITE OPTIONS, NOT JUST JONATHAN
