@@ -108,7 +108,7 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
             }
             g.drawImage(jonathanImg, 50, jonathanYCoord, null);
             g.drawImage(javametryDash, jDashXCoord, 20, null);
-            g.drawImage(littleJonathanImg, lJonathanXCoord, 610, null);
+            g.drawImage(littleJonathanImg, lJonathanXCoord, 655, null);
             g.drawImage(base, -300, 700, null);
 
             if (jDashXCoord > 400) {
