@@ -10,7 +10,9 @@ import java.io.IOException;
 
 public class Panel extends JPanel implements ActionListener, KeyListener {
     private boolean goingUp;
+    private boolean held;
     private boolean isGameOver;
+    private boolean restart;
     private boolean stop;
     private final boolean[] PRESSEDKEYS;
     private Image background;
@@ -31,7 +33,9 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
 
     public Panel() {
         goingUp = true;
+        held = false;
         isGameOver = false;
+        restart = false;
         stop = false;
         PRESSEDKEYS = new boolean[128];
         try {
@@ -131,19 +135,25 @@ public class Panel extends JPanel implements ActionListener, KeyListener {
                 jonathanYCoord = 500;
                 jonathan.setYCoord(jonathanYCoord);
             }
+
+            held = PRESSEDKEYS[32];
         } else {
             g.drawImage(gameOver, 0, 0, null);
-            if (PRESSEDKEYS[32]) {
-
+            if (PRESSEDKEYS[32] && held) {
+                held = false;
             }
-            if (!PRESSEDKEYS[32]) {
-                backgroundXCoord = 0;
-                isGameOver = false;
-                jonathanYCoord = 500;
-                jonathan.setYCoord(jonathanYCoord);
-                lJonathanXCoord = 1000;
-                lJonathan.setXCoord(lJonathanXCoord);
-                g.drawImage(background, backgroundXCoord, -20, null);
+            if (!PRESSEDKEYS[32] && !held) {
+                restart = true;
+            }
+            if (PRESSEDKEYS[32] && restart) {
+               backgroundXCoord = 0;
+               isGameOver = false;
+               jonathanYCoord = 500;
+               jonathan.setYCoord(jonathanYCoord);
+               lJonathanXCoord = 1000;
+               lJonathan.setXCoord(lJonathanXCoord);
+               g.drawImage(background, backgroundXCoord, -20, null);
+               restart = false;
             }
         }
     }
